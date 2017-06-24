@@ -1,45 +1,74 @@
-# MMM-Temperature-Humidity
-Temperature and Humidity monitoring Module for MagicMirror<sup>2</sup>
-This module works for DHT11, DHT22 and AM2302 sensors.
+# MMM-DHT-Sensor
 
-## Dependencies
-  * An installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
-  * npm
-  * [rpi-dht-sensor](https://www.npmjs.com/package/rpi-dht-sensor)
+This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror).
+
+This module gets data form DHT11, DHT22 and AM2302 sensors.
+
+
+![](screenshots/due.png)
+![](screenshots/late.png)
+
+## bcm2835
+This module uses [node-dht-sensor](https://github.com/momenso/node-dht-sensor) to get the sensor data, and this module depends on [bcm2835](http://www.airspayce.com/mikem/bcm2835/) to do so, therefore you need to install it in your Pi in order to use this module.
+
+```bash
+cd ~
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.52.tar.gz
+tar zxvf bcm2835-1.52.tar.gz
+cd bcm2835-1.52
+./configure
+make
+sudo make check
+sudo make install
+```
 
 ## Installation
- 1. Clone this repo into `~/MagicMirror/modules` directory.
- 2. Configure your `~/MagicMirror/config/config.js`:
+```bash
+git clone https://github.com/ryck/MMM-DHT-Sensor.git
+cd MMM-DHT-Sensor
+npm install
+```
+## Config
+The entry in `config.js` can include the following options:
 
-    ```
-    {
-        module: 'MMM-Temperature-Humidity',
-        position: 'top_right',
-        config: {
-            ...
-        }
-    }
-    ```
- 3. Run command `npm install` in `~/MagicMirror/modules/MMM-STT` directory.
- 4. Run command `sudo apt-get install rpi-dht-sensor`.
- 5. sudo npm start in `~/MagicMirror`.
+|Option|Description|
+|---|---|
+|`sensorPin`|**Required** This is the GPIO pin the sensor is connected to<br><br>**Type:** `integer`<br>|
+|`sensorType`|**Required** This is the the sensor type. It should work for DHT11, DHT22 and AM2302 sensors<br><br>**Type:** `integer`<br> **Possible values:** `11`  for DHT11 or `22` for DHT22 / AM2302
+| `scale`           | The scale to display the temparature <br><br>**Type:** `string`<br>**Possible values:** `C` or `F` <br> **Default value:**  `C`|
+|`updateInterval `|How often the sendor data is updated.<br><br>**Type:** `integer`<br>**Default value:** `1 hour`|
+| `initialLoadDelay`           | The initial delay before loading. If you have multiple modules that use the same API key, you might want to delay one of the requests. (Milliseconds) <br><br>**Type:** `integer`<br>**Possible values:** `1000` - `5000` <br> **Default value:**  `0`|
+| `animationSpeed`             | Speed of the update animation. (Milliseconds) <br><br>**Type:** `integer`<br>**Possible values:**`0` - `5000` <br> **Default value:** `1000` (1 second)|
+| `debug`             | Show debug information. <br><br>  **Possible values:** `true` or `false`  <br> **Default value:** `false`|
 
-## Config Options
-| **Option** | **Default** | **Description** |
-| --- | --- | --- |
-| `refreshInterval` | `50000` | Time in milli seconds before successive readings are taken. |
-| `temperaturePrefix` | `'Room temperature: '` | Text to display as prefix of Temperature Reading |
-| `temperatureSuffix` | `'°C'` | Text to display as suffix of Temperature Reading |
-| `humidityPrefix` | `'Humidity: '` | Text to display as prefix of Humidity Reading |
-| `humiditySuffix` | `'%'` | Text to display as suffix of Humidity Reading |
 
-## For Developers
-Principle is to poll the sensor every set time period for a reading and display the same to the mirror
-Note :  This module uses the BCM2835 library that requires access to /open/mem. Because of this, you will typically run node with admin privileges.
-Also, these values are hard coded in node_helper.js
-sensorType and Pin Number-
-var dht = new rpiDhtSensor.DHT11(2);
+Here is an example of an entry in `config.js`
 
-USAGE :
-var dht = new rpiDhtSensor.DHT22(pinNumber);//For DHT22 Type sensor
-var dht = new rpiDhtSensor.DHT11(pinNumber);
+```json
+	  {
+			module: "MMM-DHT-Sensor",
+			position: "top_right",
+			header: "Upstairs",
+			config: {
+		    updateInterval: 60 * 60 * 1000,
+		    initialLoadDelay: 0,
+		    animationSpeed: 1000,
+		    scale: "C",
+		    debug: false,
+		    sensorPin: 2,
+		    sensorType: 22
+			}
+		},
+```
+
+## Dependencies
+- [bcm2835](http://www.airspayce.com/mikem/bcm2835/)
+- [node-dht-sensor](https://github.com/momenso/node-dht-sensor) (installed via `npm install`)
+
+
+
+## Thanks To...
+- [Cato Antonsen](https://github.com/prasanthsasikumar) for the [MMM-Temperature-Humidity](https://github.com/prasanthsasikumar/MMM-Temperature-Humidity) module, which I used as reference. 
+- [Nick Wootton](https://github.com/MichMich) for the [MMM-UKLiveBusStopInfo](https://github.com/nwootton/MMM-UKLiveBusStopInfo) module, which I used as reference.
+- [Nigel Daniels](https://github.com/nigel-daniels/) for the [MMM-Tube-Status](https://github.com/nigel-daniels/MMM-Tube-Status) module, which I used as reference.
+- [Michael Teeuw](https://github.com/MichMich) for the [MagicMirror2](https://github.com/MichMich/MagicMirror/) framework that made this module possible.
