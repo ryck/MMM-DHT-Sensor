@@ -1,0 +1,36 @@
+.data {
+  text-align: right;
+}
+
+.data:before {
+  font-family: 'FontAwesome';
+}
+
+.temperature:before {
+  content: '\f2c7';
+}
+
+.temperature.thermometer-empty:before {
+  content: '\f2cb';
+}
+
+.temperature.thermometer-quarter:before {
+  content: '\f2ca';
+}
+
+.temperature.thermometer-half:before {
+  content: '\f2c9';
+}
+
+.temperature.thermometer-three-quarters:before {
+  content: '\f2c8';
+}
+
+.temperature.thermometer-full:before {
+  content: '\f2c7';
+}
+
+.humidity:before {
+  content: '\f043';
+}
+
