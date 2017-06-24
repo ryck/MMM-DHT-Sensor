@@ -1,7 +1,15 @@
 {
-  "name": "MMM-DHT-Sensor",
-  "version": "1.0",
+  "name": "mmm-dht-sensor",
+  "version": "1.0.0",
   "description": "Magic Mirror 2 module to get data form DHT11, DHT22 and AM2302 sensors",
+  "main": "MMM-DHT-Sensor.js",
+  "dependencies": {},
+  "devDependencies": {
+    "node-dht-sensor": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ryck/MMM-DHT-Sensor.git"
@@ -16,15 +24,12 @@
     "DHT11",
     "DHT22",
     "AM2302",
-    "bcm2835",
+    "bcm2835"
   ],
   "author": "Ricardo Gonzalez",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ryck/MMM-DHT-Sensor/issues"
   },
-  "homepage": "https://github.com/ryck/MMM-DHT-Sensor#readme",
-  "devDependencies": {
-    "node-dht-sensor": "latest"
-  }
+  "homepage": "https://github.com/ryck/MMM-DHT-Sensor#readme"
 }
