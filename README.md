@@ -64,7 +64,22 @@ Here is an example of an entry in `config.js`
 - [bcm2835](http://www.airspayce.com/mikem/bcm2835/)
 - [node-dht-sensor](https://github.com/momenso/node-dht-sensor) (installed via `npm install`)
 
+## Issues
 
+```
+WARNING! Could not load config file. Starting with default configuration. Error found: Error: The module '/home/pi/MagicMirror/modules/MMM-DHT-Sensor/node_modules/node-dht-sensor/build/Release/node_dht_sensor.node'
+was compiled against a different Node.js version using
+NODE_MODULE_VERSION 48. This version of Node.js requires
+NODE_MODULE_VERSION 53. Please try re-compiling or re-installing
+the module (for instance, using `npm rebuild` or`npm install`).
+```
+If you get this error after installing the module (or your MagicMirror is just a black screen) try this:
+
+```bash
+cd MMM-DHT-Sensor
+npm install electron-rebuild
+./node_modules/.bin/electron-rebuild
+```
 
 ## Thanks To...
 - [Cato Antonsen](https://github.com/prasanthsasikumar) for the [MMM-Temperature-Humidity](https://github.com/prasanthsasikumar/MMM-Temperature-Humidity) module, which I used as reference. 
