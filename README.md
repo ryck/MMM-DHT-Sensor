@@ -5,8 +5,7 @@ This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror).
 This module gets data form DHT11, DHT22 and AM2302 sensors.
 
 
-![](screenshots/due.png)
-![](screenshots/late.png)
+![](MMM-DHT-Sensor.png)
 
 ## bcm2835
 This module uses [node-dht-sensor](https://github.com/momenso/node-dht-sensor) to get the sensor data, and this module depends on [bcm2835](http://www.airspayce.com/mikem/bcm2835/) to do so, therefore you need to install it in your Pi in order to use this module.
