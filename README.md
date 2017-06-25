@@ -44,20 +44,20 @@ The entry in `config.js` can include the following options:
 Here is an example of an entry in `config.js`
 
 ```json
-	  {
-			module: "MMM-DHT-Sensor",
-			position: "top_right",
-			header: "Upstairs",
-			config: {
-		    updateInterval: 60 * 60 * 1000,
-		    initialLoadDelay: 0,
-		    animationSpeed: 1000,
-		    scale: "C",
-		    debug: false,
-		    sensorPin: 2,
-		    sensorType: 22
-			}
-		},
+{
+	module: "MMM-DHT-Sensor",
+	position: "top_right",
+	header: "Upstairs",
+	config: {
+		sensorPin: 2,
+		sensorType: 22,	
+		updateInterval: 60 * 60 * 1000,
+		initialLoadDelay: 0,
+		animationSpeed: 1000,
+		scale: "C",
+		debug: false
+	}
+},
 ```
 
 ## Dependencies
