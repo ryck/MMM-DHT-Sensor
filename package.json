@@ -5,7 +5,8 @@
   "main": "MMM-DHT-Sensor.js",
   "dependencies": {},
   "devDependencies": {
-    "node-dht-sensor": "latest"
+    "electron-rebuild": "^1.5.11",
+    "node-dht-sensor": "latest",
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
