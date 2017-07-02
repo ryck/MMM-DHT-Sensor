@@ -8,7 +8,7 @@
  */
 
 const NodeHelper = require("node_helper");
-var sensor = require("node-dht-sensor");
+const sensor = require("node-dht-sensor");
 
 module.exports = NodeHelper.create({
 

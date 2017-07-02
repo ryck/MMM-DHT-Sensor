@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
   "main": "MMM-DHT-Sensor.js",
-  "dependencies": {},
-  "devDependencies": {
-    "node-dht-sensor": "latest"
+  "dependencies": {
+     "node-dht-sensor": "latest"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
