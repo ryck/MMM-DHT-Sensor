@@ -62,7 +62,7 @@ Here is an example of an entry in `config.js`
 },
 ```
 ## Notifications
-This module exposes the following notifications:
+This module implements the following notifications:
 
 - **INDOOR_TEMPERATURE** (int) Temperature in Celsius
 - **INDOOR_HUMIDITY** (int) Humidity in relative humidity (%)
