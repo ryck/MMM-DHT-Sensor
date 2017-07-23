@@ -34,8 +34,9 @@ The entry in `config.js` can include the following options:
 |---|---|
 |`sensorPin`|**Required** This is the GPIO pin the sensor is connected to<br><br>**Type:** `integer`<br>|
 |`sensorType`|**Required** This is the the sensor type. It should work for DHT11, DHT22 and AM2302 sensors<br><br>**Type:** `integer`<br> **Possible values:** `11`  for DHT11 or `22` for DHT22 / AM2302
-| `scale`           | The scale to display the temparature <br><br>**Type:** `string`<br>**Possible values:** `C` or `F` <br> **Default value:**  `C`|
+| `units`           | What units to use. Specified by config.js <br><br>**Type:** `string`<br>**Possible values:** config.units = Specified by config.js, `metric` = Celsius, `imperial` =Fahrenheit  <br> **Default value:**  `config.units`|
 |`updateInterval `|How often the sendor data is updated.<br><br>**Type:** `integer`<br>**Default value:** `1 hour`|
+|`relativeScale `|Relative scale to choose the temparature icon.<br><br>**Type:** `integer`<br>**Default value:** `30`|
 | `initialLoadDelay`           | The initial delay before loading. If you have multiple modules that use the same API key, you might want to delay one of the requests. (Milliseconds) <br><br>**Type:** `integer`<br>**Possible values:** `1000` - `5000` <br> **Default value:**  `0`|
 | `animationSpeed`             | Speed of the update animation. (Milliseconds) <br><br>**Type:** `integer`<br>**Possible values:**`0` - `5000` <br> **Default value:** `1000` (1 second)|
 | `debug`             | Show debug information. <br><br>  **Possible values:** `true` or `false`  <br> **Default value:** `false`|
@@ -54,11 +55,17 @@ Here is an example of an entry in `config.js`
 		updateInterval: 60 * 60 * 1000,
 		initialLoadDelay: 0,
 		animationSpeed: 1000,
-		scale: "C",
+		units: "metric",
+		relativeScale: 35,
 		debug: false
 	}
 },
 ```
+## Notifications
+This module exposes the following notifications:
+
+- **INDOOR_TEMPERATURE** (int) Temperature in Celsius
+- **INDOOR_HUMIDITY** (int) Humidity in relative humidity (%)
 
 ## Dependencies
 - [bcm2835](http://www.airspayce.com/mikem/bcm2835/)

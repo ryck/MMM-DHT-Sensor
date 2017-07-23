@@ -11,7 +11,8 @@ Module.register("MMM-DHT-Sensor", {
     updateInterval: 60 * 60 * 1000, // Every hour.
     initialLoadDelay: 0, // No delay/
     animationSpeed: 1000, // One second.
-    scale: "C", // Celsius
+    units: config.units, // Celsius
+    relativeScale: 30,
     debug: false,
     sensorPin: 2,
     sensorType: 22
@@ -68,12 +69,18 @@ Module.register("MMM-DHT-Sensor", {
       }
       this.loaded = true;
       // Convert C to F
-      if (this.config.scale.toUpperCase() === 'F') {
+      if (this.config.units === 'imperial') {
         this.temperature = data.temperature * 9/5 + 32;
       } else {
         this.temperature = data.temperature;
       }
+      if (typeof this.temperature !== "undefined" && this.temperature !== null)  {
+        this.sendNotification("INDOOR_TEMPERATURE", this.temperature);
+      }
       this.humidity = data.humidity;
+      if (typeof this.humidity !== "undefined" && this.humidity !== null)  {
+        this.sendNotification("INDOOR_HUMIDITY", this.humidity);
+      }      
       this.updateDom(this.config.animationSpeed);
     }
   },
@@ -112,7 +119,20 @@ Module.register("MMM-DHT-Sensor", {
       temperatureCell.className = "data temperature ";
 
       // Get a 40C ratio value to set the thermometer icon scale.
-      var temperatureRatio = this.temperature / 40;
+      var temperatureRatio = this.temperature / this.config.relativeScale;
+
+      var degreeLabel = "";
+      switch (this.config.units ) {
+        case "metric":
+          degreeLabel = "C";
+          break;
+        case "imperial":
+          degreeLabel = "F";
+          break;
+        case "default":
+          degreeLabel = "C";
+          break;
+      }
 
       // Asign themomether icon.
       switch (true) {
@@ -148,7 +168,7 @@ Module.register("MMM-DHT-Sensor", {
           break;
       }
 
-      temperatureCell.innerHTML = " " + this.temperature + " " + this.config.scale.toUpperCase();
+      temperatureCell.innerHTML = " " + this.temperature + " " + degreeLabel;
       tempRow.appendChild(temperatureCell);
 
       var humidityCell = document.createElement("td");
