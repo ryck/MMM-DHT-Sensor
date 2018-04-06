@@ -6,9 +6,11 @@
   "dependencies": {
      "node-dht-sensor": "latest"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron-rebuild": "^1.2.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
   },
   "repository": {
     "type": "git",
