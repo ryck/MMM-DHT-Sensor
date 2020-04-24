@@ -70,14 +70,16 @@ Module.register("MMM-DHT-Sensor", {
 			this.loaded = true;
 			// Convert C to F
 			if (this.config.units === "imperial") {
-				this.temperature = data.temperature * 9/5 + 32;
+				this.temperature = Math.round((data.temperature * 9/5 + 32)*100)/100;
 			} else {
-				this.temperature = data.temperature;
+				this.temperature = Math.round(data.temperature);
 			}
+			
 			if (typeof this.temperature !== "undefined" && this.temperature !== null)  {
 				this.sendNotification("INDOOR_TEMPERATURE", this.temperature);
 			}
 			this.humidity = data.humidity;
+			
 			if (typeof this.humidity !== "undefined" && this.humidity !== null)  {
 				this.sendNotification("INDOOR_HUMIDITY", this.humidity);
 			}
