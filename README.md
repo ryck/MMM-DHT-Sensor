@@ -1,5 +1,7 @@
 # MMM-DHT-Sensor
 
+This version of the module adds rounding of the temperature in imperial mode so that it don't have .999999999999~ and .0000000001~ 
+
 This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror).
 
 This module gets data form DHT11, DHT22 and AM2302 sensors.
