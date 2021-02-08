@@ -7,7 +7,7 @@
     "node-dht-sensor": "latest"
   },
   "devDependencies": {
-    "electron-rebuild": "^1.2.1"
+    "electron-rebuild": "^2.3.5"
   },
   "scripts": {
     "postinstall": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
