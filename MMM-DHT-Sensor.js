@@ -93,19 +93,19 @@ Module.register("MMM-DHT-Sensor", {
 
 		if (this.config.sensorPin === "") {
 			wrapper.innerHTML = "Please set the GPIO pin number.";
-			wrapper.className = "dimmed light small";
+			wrapper.className = "small";
 			return wrapper;
 		}
 
 		if (this.config.sensorType === "") {
 			wrapper.innerHTML = "Please set the sensor type (11 / 22).";
-			wrapper.className = "dimmed light small";
+			wrapper.className = "small";
 			return wrapper;
 		}
 
 		if (!this.loaded) {
 			wrapper.innerHTML = "Loading sensor data...";
-			wrapper.className = "dimmed light small";
+			wrapper.className = "small";
 			return wrapper;
 		}
 
