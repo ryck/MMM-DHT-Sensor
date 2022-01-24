@@ -4,7 +4,7 @@
   "description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
   "main": "MMM-DHT-Sensor.js",
   "dependencies": {
-    "magicmirror-rebuild": "^1.0.3",
+    "magicmirror-rebuild": "^1.0.4",
     "node-dht-sensor": "latest"
   },
   "devDependencies": {
