@@ -94,8 +94,7 @@ If you get this error after installing the module (or your MagicMirror is just a
 
 ```bash
 cd MMM-DHT-Sensor
-npm install electron-rebuild
-./node_modules/.bin/electron-rebuild
+npm run rebuild
 ```
 
 ## Thanks To...
