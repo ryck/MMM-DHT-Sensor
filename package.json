@@ -1,6 +1,6 @@
 {
   "name": "mmm-dht-sensor",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
   "main": "MMM-DHT-Sensor.js",
   "dependencies": {
