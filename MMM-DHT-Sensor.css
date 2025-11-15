@@ -1,8 +1,8 @@
 .data {
-  text-align: right;
+	text-align: right;
 }
 
 .data i {
-  width: 20px;
-  text-align: center;
+	width: 20px;
+	text-align: center;
 }

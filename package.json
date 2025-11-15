@@ -1,37 +1,37 @@
 {
-  "name": "mmm-dht-sensor",
-  "version": "1.4.0",
-  "description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
-  "main": "MMM-DHT-Sensor.js",
-  "dependencies": {
-    "node-dht-sensor": "latest"
-  },
-  "devDependencies": {
-    "electron-rebuild": "^3.2.9"
-  },
-  "scripts": {
-    "rebuild": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ryck/MMM-DHT-Sensor.git"
-  },
-  "keywords": [
-    "Magic",
-    "Mirror",
-    "Module",
-    "Temperature",
-    "Humidity",
-    "Sensor",
-    "DHT11",
-    "DHT22",
-    "AM2302",
-    "bcm2835"
-  ],
-  "author": "Ricardo Gonzalez",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ryck/MMM-DHT-Sensor/issues"
-  },
-  "homepage": "https://github.com/ryck/MMM-DHT-Sensor#readme"
+	"name": "mmm-dht-sensor",
+	"version": "2.0.0",
+	"description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
+	"main": "MMM-DHT-Sensor.js",
+	"dependencies": {
+		"node-dht-sensor": "latest"
+	},
+	"devDependencies": {
+		"electron-rebuild": "^3.2.9"
+	},
+	"scripts": {
+		"rebuild": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ryck/MMM-DHT-Sensor.git"
+	},
+	"keywords": [
+		"Magic",
+		"Mirror",
+		"Module",
+		"Temperature",
+		"Humidity",
+		"Sensor",
+		"DHT11",
+		"DHT22",
+		"AM2302",
+		"bcm2835"
+	],
+	"author": "Ricardo Gonzalez",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ryck/MMM-DHT-Sensor/issues"
+	},
+	"homepage": "https://github.com/ryck/MMM-DHT-Sensor#readme"
 }

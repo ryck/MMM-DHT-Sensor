@@ -1,5 +1,3 @@
-"use strict";
-
 /* Magic Mirror
  * Module: MMM-DHT-Sensor
  *
@@ -8,38 +6,70 @@
  */
 
 const NodeHelper = require("node_helper");
-const sensor = require("node-dht-sensor");
+let sensor;
+
+try {
+	sensor = require("node-dht-sensor");
+} catch (error) {
+	console.error("MMM-DHT-Sensor: Failed to load node-dht-sensor", error);
+}
 
 module.exports = NodeHelper.create({
-  start: function () {
-    console.log("MMM-DHT-Sensor helper started ...");
-  },
-  /**
-   * readSensor()
-   * Requests sensor data.
-   */
-  readSensor: function (sensorPin, sensorType) {
-    var self = this;
-    sensor.read(sensorType, sensorPin, function (err, temperature, humidity) {
-      if (!err) {
-        self.sendSocketNotification("SENSOR_DATA", {
-          temperature: temperature.toFixed(2),
-          humidity: humidity.toFixed(2),
-        });
-      } else {
-        self.sendSocketNotification("SENSOR_DATA", {
-          temperature: null,
-          humidity: null,
-        });
-        console.log(err);
-      }
-    });
-  },
+	start: function () {
+		this.sensorAvailable = Boolean(sensor);
+		console.log("MMM-DHT-Sensor helper started ...");
+		if (!this.sensorAvailable) {
+			console.warn(
+				"MMM-DHT-Sensor: node-dht-sensor module unavailable; sending null readings.",
+			);
+		}
+	},
+	/**
+	 * readSensor()
+	 * Requests sensor data.
+	 */
+	readSensor: function (sensorPin, sensorType) {
+		if (!this.sensorAvailable) {
+			this.sendSensorData(null, null);
+			return;
+		}
 
-  //Subclass socketNotificationReceived received.
-  socketNotificationReceived: function (notification, payload) {
-    if (notification === "GET_SENSOR_DATA") {
-      this.readSensor(payload.sensorPin, payload.sensorType);
-    }
-  },
+		if (typeof sensorPin !== "number" || typeof sensorType !== "number") {
+			console.warn("MMM-DHT-Sensor: Invalid sensor configuration", {
+				sensorPin,
+				sensorType,
+			});
+			this.sendSensorData(null, null);
+			return;
+		}
+
+		sensor.read(sensorType, sensorPin, (err, temperature, humidity) => {
+			if (err) {
+				console.error("MMM-DHT-Sensor: Sensor read failed", err);
+				this.sendSensorData(null, null);
+				return;
+			}
+
+			this.sendSensorData(temperature, humidity);
+		});
+	},
+
+	sendSensorData: function (temperature, humidity) {
+		const format = (value) =>
+			typeof value === "number" && Number.isFinite(value)
+				? value.toFixed(2)
+				: null;
+
+		this.sendSocketNotification("SENSOR_DATA", {
+			temperature: format(temperature),
+			humidity: format(humidity),
+		});
+	},
+
+	//Subclass socketNotificationReceived received.
+	socketNotificationReceived: function (notification, payload) {
+		if (notification === "GET_SENSOR_DATA") {
+			this.readSensor(payload.sensorPin, payload.sensorType);
+		}
+	},
 });
