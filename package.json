@@ -1,13 +1,13 @@
 {
 	"name": "mmm-dht-sensor",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Magic Mirror 2 module to get data from DHT11, DHT22 and AM2302 sensors",
 	"main": "MMM-DHT-Sensor.js",
 	"dependencies": {
 		"node-dht-sensor": "latest"
 	},
 	"devDependencies": {
-		"electron-rebuild": "^3.2.9"
+		"@electron/rebuild": "^4.0.3"
 	},
 	"scripts": {
 		"rebuild": "node_modules/.bin/electron-rebuild -e ../../node_modules/electron"
